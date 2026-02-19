@@ -1,0 +1,345 @@
+/**
+ * ESTILOS DIDÁTICOS PARA O GERENCIADOR DE TAREFAS
+ * Exemplo de CSS bem organizado e comentado
+ */
+
+/* ===== VARIÁVEIS CSS ===== */
+:root {
+  --cor-primaria: #3498db;
+  --cor-sucesso: #2ecc71;
+  --cor-perigo: #e74c3c;
+  --cor-aviso: #f39c12;
+  --cor-fundo: #ecf0f1;
+  --cor-texto: #2c3e50;
+  --cor-sombra: rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --espaco-padrao: 16px;
+}
+
+/* ===== ESTILOS GLOBAIS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px var(--espaco-padrao);
+  text-align: center;
+  box-shadow: 0 4px 6px var(--cor-sombra);
+  border-bottom: 4px solid var(--cor-primaria);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.app-header .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* ===== MAIN CONTENT ===== */
+.app-main {
+  flex: 1;
+  max-width: 900px;
+  margin: 40px auto;
+  width: 100%;
+  padding: 0 var(--espaco-padrao);
+}
+
+/* ===== SEÇÕES ===== */
+.formulario-section,
+.tarefas-section {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px var(--cor-sombra);
+}
+
+.formulario-section h2,
+.tarefas-section h2 {
+  color: var(--cor-primaria);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* ===== FORMULÁRIO ===== */
+.tarefa-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Botão Primário */
+.btn-primary {
+  background-color: var(--cor-primaria);
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Botão Sucesso */
+.btn-sucesso {
+  background-color: var(--cor-sucesso);
+  color: white;
+}
+
+.btn-sucesso:hover:not(:disabled) {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+}
+
+/* Botão Perigo */
+.btn-perigo {
+  background-color: var(--cor-perigo);
+  color: white;
+}
+
+.btn-perigo:hover:not(:disabled) {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* ===== MENSAGENS ===== */
+.mensagem-erro {
+  background-color: #ffe6e6;
+  color: #c0392b;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--cor-perigo);
+  font-weight: 500;
+}
+
+.carregando,
+.vazio {
+  text-align: center;
+  padding: 30px;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ===== LISTA DE TAREFAS ===== */
+.tarefas-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tarefa-card {
+  background: white;
+  border: 2px solid #ecf0f1;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarefa-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--cor-primaria), var(--cor-sucesso));
+}
+
+.tarefa-card:hover {
+  box-shadow: 0 6px 20px var(--cor-sombra);
+  transform: translateY(-4px);
+  border-color: var(--cor-primaria);
+}
+
+.tarefa-card.concluida {
+  opacity: 0.7;
+  background-color: #f9f9f9;
+}
+
+.tarefa-card.concluida .tarefa-titulo {
+  text-decoration: line-through;
+  color: #95a5a6;
+}
+
+.tarefa-conteudo {
+  flex: 1;
+}
+
+.tarefa-titulo {
+  color: var(--cor-primaria);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tarefa-descricao {
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.tarefa-id {
+  color: #95a5a6;
+  font-size: 0.85rem;
+}
+
+.tarefa-acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tarefa-acoes .btn {
+  flex: 1;
+  min-width: 100px;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 10px;
+}
+
+/* ===== FOOTER ===== */
+.app-footer {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  font-size: 0.95rem;
+}
+
+.app-footer p {
+  margin: 0;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-main {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  .formulario-section,
+  .tarefas-section {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .tarefas-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .tarefa-acoes {
+    flex-direction: column;
+  }
+
+  .tarefa-acoes .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .app-header .subtitle {
+    font-size: 1rem;
+  }
+
+  .formulario-section h2,
+  .tarefas-section h2 {
+    font-size: 1.4rem;
+  }
+}
