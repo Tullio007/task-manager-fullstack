@@ -21,8 +21,9 @@ function concluirTarefa(id) {
     tarefas = tarefas.map(tarefa => {
         if (tarefa.id === id) {
             return { ...tarefa, concluida: true };
+        }else {
+            return tarefa;
         }
-        return tarefa;
     });
 }
 
@@ -38,15 +39,11 @@ function removerTarefa(id) {
 
 
 
-criarTarefa("Estudar JavaScript", "Revisar conceitos de ES6 e praticar exercícios");
-criarTarefa("Tomar café", "Preparar um café forte");
-listarTarefas();
-
-concluirTarefa(1);
-listarTarefas();
-
-concluirTarefa(2);
-listarTarefas();
-
-removerTodasConcluidas();
-listarTarefas();
+module.exports = {
+    tarefas,
+    criarTarefa,
+    listarTarefas,
+    concluirTarefa,
+    removerTarefa,
+    removerTodasConcluidas
+};
